@@ -5,6 +5,7 @@ export class RenderClass implements IRendererInstance {
   createRenderer(): WebGLRenderer {
     const renderer = new WebGLRenderer()
 
+
     return renderer
   }
 }
