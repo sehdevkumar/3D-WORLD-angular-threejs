@@ -11,7 +11,7 @@ export class CameraClass implements ICameraInstance {
   );
 
   // move the camera back so we can view the scene
-  camera.position.set(0, 0, 10);
+  camera.position.set(0, 0, 20);
 
   return camera;
 

@@ -29,11 +29,14 @@ export class WorldClass implements IWorldInstance {
   constructor(private container: ElementRef<HTMLDivElement>) {
     this.renderer = this.RendererInstance?.createRenderer()
     this.cube = this.CubeInstance.createCube()
+    const cube2 = this.CubeInstance.createCube()
+    cube2.position.set(3,1,5);
+
     this.camera = this.CameraInstance.createCamera()
     this.scene = this.SceneInstance.createScene()
     this.light = this.LightInstance.createLight();
 
-    this.scene.add(this.cube,this.light)
+    this.scene.add(...[this.cube,cube2],this.light)
     container?.nativeElement?.append(this.renderer?.domElement)
 
     this.ResizerInstance = new ResizerClass(
