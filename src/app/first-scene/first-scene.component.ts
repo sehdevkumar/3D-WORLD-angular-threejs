@@ -1,5 +1,5 @@
 import { WorldClass } from './../3D-Instances/WorldClass';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, NgZone, ViewChild } from '@angular/core'
 import {
   BoxGeometry,
   BufferGeometry,
@@ -25,6 +25,12 @@ export class FirstSceneComponent implements AfterViewInit {
   @ViewChild('container') container!: ElementRef<HTMLDivElement>
 
 
+
+  constructor(private ngZone:NgZone) {
+
+  }
+
+
   world!:WorldClass;
 
 
@@ -32,7 +38,11 @@ export class FirstSceneComponent implements AfterViewInit {
 
     this.world = new WorldClass(this.container)
 
-    this.world.render()
+    this.ngZone.runOutsideAngular(()=> {
+      this.world.render()
+      this.world.start()
+    })
+
   }
 
 
